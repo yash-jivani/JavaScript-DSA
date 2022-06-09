@@ -10,7 +10,7 @@ var mySqrt = function(x) {
             return mid;
         }
         else if(mid*mid<x){
-            ans = mid; 
+            ans = mid; // 'cause mid*mid is possible solution
             start = mid+1;
         }
         else if(mid*mid>x){
