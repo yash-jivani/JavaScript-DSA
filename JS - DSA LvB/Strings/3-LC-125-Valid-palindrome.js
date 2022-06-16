@@ -8,8 +8,8 @@ function isPalindrome(str){
     
     while(start<end){
 
-        if( (str[start].charCodeAt(0)>=65) && (str[start].charCodeAt(0)<=90) || (str[start].charCodeAt(0)>=97) && (str[start].charCodeAt(0)<=122) ){
-            if( (str[end].charCodeAt(0)>=65) && (str[end].charCodeAt(0)<=90) || (str[end].charCodeAt(0)>=97) && (str[end].charCodeAt(0)<=122) ){
+        if( (str[start].charCodeAt(0)>=65) && (str[start].charCodeAt(0)<=90) || (str[start].charCodeAt(0)>=97) && (str[start].charCodeAt(0)<=122) || ( (str[start].charCodeAt(0)>=48) && (str[start].charCodeAt(0)<=57) ) ){
+            if( (str[end].charCodeAt(0)>=65) && (str[end].charCodeAt(0)<=90) || (str[end].charCodeAt(0)>=97) && (str[end].charCodeAt(0)<=122) || ( (str[end].charCodeAt(0)>=48) && (str[end].charCodeAt(0)<=57) ) ){
 
                 if(str[start].toLowerCase()!==str[end].toLowerCase()){
                     return false
@@ -33,3 +33,4 @@ console.log(isPalindrome("yash"))
 console.log(isPalindrome("ma #m  m"))
 console.log(isPalindrome("ma #  m"))
 console.log(isPalindrome("race car."))
+console.log(isPalindrome('0pp'))
