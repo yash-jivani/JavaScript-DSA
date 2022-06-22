@@ -34,3 +34,30 @@ console.log(isPalindrome("ma #m  m"))
 console.log(isPalindrome("ma #  m"))
 console.log(isPalindrome("race car."))
 console.log(isPalindrome('0pp'))
+
+// method 2 : 
+
+
+function isPalindrome(str){
+    
+    let s = str.toLowerCase().replace(/[\W_]/g,"");
+    let start = 0; 
+    let end  = s.length-1;
+    
+    while(start<end){
+        if(s[start]!==s[end]){
+            return false;
+        }
+        start++;
+        end--;
+    }
+    return true;
+}
+
+console.log("---")
+console.log(isPalindrome("c1 O$d@eEdo1 C"))
+console.log(isPalindrome("yash"))
+console.log(isPalindrome("ma #m  m"))
+console.log(isPalindrome("ma #  m"))
+console.log(isPalindrome("race car."))
+console.log(isPalindrome('0pp'))
