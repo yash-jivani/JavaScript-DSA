@@ -40,14 +40,14 @@ console.log(insertionSort([24,18,38,43,14,40,1,54],8))
 // with while loop
 function insersionsort2(arr,n){
     for(let i=1;i<n;i++){
-        let temp = arr[i];
+        let valueOFi = arr[i];
         let j = i-1;
-        while((arr[j]>temp) && (j>-1)){
+        while((valueOFi < arr[j]) && (j>-1)){
             // shift
             arr[j+1] = arr[j];
             j--;
         }
-        arr[j+1] = temp;
+        arr[j+1] = valueOFi;
     }
     return arr
 }
