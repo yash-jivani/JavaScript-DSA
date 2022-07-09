@@ -6,9 +6,11 @@ function selectionSort(arr){
                 minIndex = j;
             }
         }
-        let tmp = arr[i];
-        arr[i] = arr[minIndex];
-        arr[minIndex] = tmp;
+        if(i!==minIndex){
+            let tmp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = tmp;
+        }
     }
     return arr;
 }
