@@ -30,8 +30,11 @@ var sortArray = function (nums) {
     }
 
     let mid = Math.floor(nums.length / 2);
+    
+    // sortArray function divide array till arr.len = 1 
     let leftSide = sortArray(nums.slice(0, mid));
     let rightSide = sortArray(nums.slice(mid));
+    // merge function  merge 2 sorted arrays
     return merge(leftSide, rightSide);
 };
 
