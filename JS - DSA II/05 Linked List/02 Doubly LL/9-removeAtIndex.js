@@ -1,114 +1,129 @@
 class Node{
-    constructor(value){
-        this.data = value;
+    constructor(val){
+        this.val = val;
         this.next = null;
         this.prev = null;
     }
 }
 
-class DoublyLL{
-    constructor(value){
-        const newNode = new Node(value);
-        this.head = newNode;
-        this.tail = newNode;
-        this.length = 1;
-    }
 
-    insertAtEnd(value){
-        const newNode = new Node(value);
-        if(this.length===0){
+class DoublyLinkedList {
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+    push(val){
+        var newNode = new Node(val);
+        if(this.length === 0){
             this.head = newNode;
             this.tail = newNode;
-        }else{
+        } else {
             this.tail.next = newNode;
             newNode.prev = this.tail;
-            this.tail = newNode;    
+            this.tail = newNode;
         }
         this.length++;
+        return this;
+    } 
+    pop(){
+        if(!this.head) return undefined;
+        var poppedNode = this.tail;
+        if(this.length === 1){
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = poppedNode.prev;
+            this.tail.next = null;
+            poppedNode.prev = null;
+        }
+        this.length--;
+        return poppedNode;
     }
-
-    traversal(){
-        let arr = [];
-        let tmp = this.head;
-        // let tmp = this.tail;         // reverse order
-        while(tmp!==null){
-            arr.push(tmp.data);
-            tmp = tmp.next;
-            // tmp = tmp.prev;          // reverse order
+    shift(){
+        if(this.length === 0) return undefined;
+        var oldHead = this.head;
+        if(this.length === 1){
+            this.head = null;
+            this.tail = null;
+        }else{
+            this.head = oldHead.next;
+            this.head.prev = null;
+            oldHead.next = null;
         }
-        return arr;
+        this.length--;
+        return oldHead;
     }
-
-    deleteFromIndex(index){
-
-        if(this.length===0){
-            return 'LinkedList is empty'
+    unshift(val){
+        var newNode = new Node(val);
+        if(this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
         }
-
-        if(index < 0 || index > this.length){
-            return 'Invalid index'
-        }
-        else{
-
-            if(this.length===1){
-                let tmp = this.head;
-                this.head = null;
-                this.tail = null;
-                this.length--;
-                return tmp
+        this.length++;
+        return this;
+    }
+    get(index){
+        if(index < 0 || index >= this.length) return null;
+        var count, current;
+        if(index <= this.length/2){
+            count = 0;
+            current = this.head;
+            while(count !== index){
+                current = current.next;
+                count++;
             }
-
-            if(index===0){
-                // delete from beginning
-                let tmp = this.head;
-                this.head = this.head.next;
-                this.head.prev = null;
-                tmp.next = null;
-                this.length--;
-                return tmp;
-            }
-            else if(index === this.length-1){
-                // delete from end
-                let tmp = this.tail;
-                this.tail = this.tail.prev;
-                tmp.prev = null;
-                this.tail.next = null;
-                this.length--;
-                return tmp;
-
-            }else{
-                // delete from index
-                let tmp = this.head;
-                let count = index;
-                while(count!==0){
-                    tmp =tmp.next;
-                    count--;
-                }
-                tmp.prev.next = tmp.next;
-                tmp.next.prev = tmp.prev;
-                tmp.next = null;
-                tmp.right = null;
-                this.length--;
-                return tmp;
+        } else {
+            count = this.length - 1;
+            current = this.tail;
+            while(count !== index){
+                current = current.prev;
+                count--;
             }
         }
+        return current;
     }
+    set(index, val){
+        var foundNode = this.get(index);
+        if(foundNode != null){
+            foundNode.val = val;
+            return true;
+        }
+        return false;
+    }
+    insert(index, val){
+        if(index < 0 || index > this.length) return false;
+        if(index === 0) return !!this.unshift(val);
+        if(index === this.length) return !!this.push(val);
 
+        var newNode = new Node(val);
+        var beforeNode = this.get(index-1);
+        var afterNode = beforeNode.next;
+        
+        beforeNode.next = newNode, newNode.prev = beforeNode;
+        newNode.next = afterNode, afterNode.prev = newNode;
+        this.length++;
+        return true;
+    }
+    removeAt(index){
+        if(index < 0 || index >= this.length) return false;
+        if(index === 0) return !!this.shift();
+        if(index === this.length) return !!this.pop();
+        var removeNode = this.get(index);
+        removeNode.prev.next = removeNode.next;
+        removeNode.next.prev = removeNode.prev;
+        removeNode.next = null;
+        removeNode.prev = null;
+        this.length--;
+        return removeNode;
+    }
 }
 
-const LinkedList = new DoublyLL(11);
-LinkedList.insertAtEnd("AA")
-LinkedList.insertAtEnd("BB")
-LinkedList.insertAtEnd("CC")
-console.log(LinkedList.traversal()) 
-
-console.log(LinkedList.deleteFromIndex(0))
-console.log(LinkedList.traversal()) 
-console.log(LinkedList.deleteFromIndex(1))
-console.log(LinkedList.traversal()) 
-console.log(LinkedList); 
-console.log(LinkedList.deleteFromIndex(1))
-console.log(LinkedList.traversal()) 
-console.log(LinkedList.deleteFromIndex(0))
-console.log(LinkedList.traversal()) 
-console.log(LinkedList.deleteFromIndex(0))
+var list = new DoublyLinkedList()
+list.push("Harry")
+list.push("Ron")
+list.push("Hermione")
