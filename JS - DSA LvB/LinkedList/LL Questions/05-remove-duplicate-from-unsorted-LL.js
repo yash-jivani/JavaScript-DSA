@@ -1,4 +1,4 @@
-removeDuplicates(head)
+function removeDuplicates(head)
 {
     
     let tmp = head;
