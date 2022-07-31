@@ -1,8 +1,6 @@
-// approach 1 :: 
-// data replacement
-
 function segregate(head);
 {
+
     let zeros = 0;
     let ones = 0;
     let twos = 0;
@@ -35,7 +33,3 @@ function segregate(head);
     }
     return head;
 }
-
-
-// approach 2 :: 
-// without data replacement
