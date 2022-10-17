@@ -109,4 +109,5 @@ console.log(heap.getList());
 heap.insert(7);
 console.log(heap.getList());
 
-Output: [2, 3, 9, 5, 4][(2, 3, 4, 5)][(2, 3, 4, 5, 7)];
+// Output: [2, 3, 9, 5, 4][(2, 3, 4, 5)][(2, 3, 4, 5, 7)];
+// ref : https://learnersbucket.com/tutorials/array/heap-data-structure-in-javascript/
